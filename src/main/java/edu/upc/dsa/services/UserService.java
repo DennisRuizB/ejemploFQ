@@ -7,6 +7,7 @@ import edu.upc.dsa.ProductsManagerImp;
 import edu.upc.dsa.ProductsManager;
 import edu.upc.dsa.UserManager;
 import edu.upc.dsa.UserManagerImpl;
+import edu.upc.dsa.models.Issue;
 import edu.upc.dsa.models.Products;
 import edu.upc.dsa.models.User;
 import io.swagger.annotations.Api;
@@ -19,6 +20,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -167,6 +169,25 @@ public class UserService {
             User u = this.um.Register(user);
             return Response.status(201).entity(u).build();
         }
+    }
+
+
+
+    //////////INTENGO FQ EJ2 //////////
+    @POST
+    @Path("/issue")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response issue(Issue issue){
+        Response response =  Response.status(201).entity(issue).build();
+        System.out.println(((Issue) response.getEntity()).getDate());
+        System.out.println(((Issue) response.getEntity()).getInformer());
+        System.out.println(((Issue) response.getEntity()).getMessage());
+       // System.out.println(response.getEntity());
+//        System.out.println(issue.getDate());
+//        System.out.println(issue.getInformer());
+//        System.out.println(issue.getMessage());
+        return response;
     }
 
 }
